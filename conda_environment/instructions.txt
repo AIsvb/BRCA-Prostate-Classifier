@@ -1,0 +1,17 @@
+Instructions for setting up the conda environment on the HPC (which is quite a challenge):
+
+1. Set the 'pkgs_dirs' variable of the conda config file to a folder on the share with enough space for caching (I would recommend >12GB)
+2. run: conda env create -f <PATH_TO_ENVIRONMENT_YAML_FILE>
+
+I created three slightly different files. In case one does not work, try the other one. If you run into trouble with installing pip packages, install them manually
+according to step 3.
+
+3. Create a cache folder on the share. By default, the cache folder for pip will reside on your personal space of only a few GBs, which will quickly fill up.
+
+Run the following commands:
+    a. mkdir -p <NAME_OF_CACHE_FOLDER>                                      # Creates the folder. Make sure to create the folder on a location with enough space.
+    b. export TMPDIR=<PATH_TO_CACHE_FOLDER>
+    c. sudo chmod 777 <PATH_TO_CACHE_FOLDER>                                # Ensure the folder is accessible
+    d. pip --cache-dir <PATH_TO_CACHE_FOLDER> install <PACKAGE_NAME>
+
+Hopefully, you end up with the right environment :)
